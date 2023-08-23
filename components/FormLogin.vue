@@ -16,7 +16,7 @@ const form = ref();
 async function submit() {
   await form.value!.validate();
   // Do something with state.value
-  console.log(state.value)
+  console.log(state.value);
 }
 </script>
 
@@ -28,11 +28,26 @@ async function submit() {
       </UFormGroup>
 
       <UFormGroup label="Password" name="password">
-        <UInput v-model="state.password" type="password"  placeholder="Password"/>
+        <UInput
+          v-model="state.password"
+          type="password"
+          placeholder="Password"
+        />
       </UFormGroup>
 
-      <div class="text-right">
-        <UButton type="submit" color="orange" size="md" block class="text-[16px]"> Submit </UButton>
+      <div class="flex items-center justify-between">
+        <UButton
+          color="orange"
+          size="md"
+          variant="ghost"
+          class="text-[16px]"
+          to="/blogs"
+        >
+          Blogs
+        </UButton>
+        <UButton type="submit" color="orange" size="md" class="text-[16px]">
+          Submit
+        </UButton>
       </div>
     </UForm>
   </div>
