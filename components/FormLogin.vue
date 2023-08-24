@@ -3,20 +3,36 @@ import { z } from "zod";
 
 const schema = z.object({
   email: z.string().email("Invalid email"),
-  password: z.string().min(8, "Must be at least 8 characters"),
+  password: z.string().min(3, "Must be at least 8 characters"),
 });
 
 const state = ref({
-  email: undefined,
-  password: undefined,
+  email: "john@mail.com",
+  password: "changeme",
 });
 
 const form = ref();
 
+const queryLogin = gql`
+  mutation handleLogin($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      access_token
+      refresh_token
+    }
+  }
+`;
+
 async function submit() {
   await form.value!.validate();
   // Do something with state.value
-  console.log(state.value);
+  const formData = state.value;
+  const { mutate: loginMutate } = useMutation(queryLogin, { formData });
+  try {
+    const { data } = await loginMutate(formData);
+    console.log(data);
+  } catch (error:any) {
+    console.log(error.message);
+  }
 }
 </script>
 

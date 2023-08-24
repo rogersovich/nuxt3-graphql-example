@@ -1,11 +1,16 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ["@nuxtjs/apollo", "@nuxthq/ui"],
   apollo: {
     clients: {
       default: {
-        httpEndpoint: "https://rickandmortyapi.com/graphql",
+        httpEndpoint: "https://rickandmortyapi.com/graphql"
+      },
+      fakeAPI: {
+        httpEndpoint: "https://api.escuelajs.co/graphql"
+      },
+      country: {
+        httpEndpoint: "https://countries.trevorblades.com/graphql"
       },
     },
   },
